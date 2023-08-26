@@ -55,9 +55,21 @@
 						<!-- Work -->
 							<article id="work">
 								<h2 class="major">Research</h2>
-								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
-								<p>Adipiscing magna sed dolor elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices.</p>
-								<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus pharetra. Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus amet feugiat tempus.</p>
+								<span class="image main"><img src="images/PhotoZ_Graph.png" alt="" /></span>
+								<p>Photometric redshifts (photo-zʼs) are an essential part of every cosmological science goal of the Large Synoptic Survey Telescope (LSST), including studies of large-scale structure, weak lensing, galaxy clusters, and supernova host galaxies (Ivezić et al. 2008). This estimator is a modified version of Graham et al. 2020 for use in the RSP with the DP0.2 dataset. The color-matched nearest-neighbors (CMNN) photo-z estimator provides photometric redshifts with an accuracy that is directly dependent on (and only on) the quality of the simulated observed photometry which depends directly and only on
+								the 5σ limiting magnitudes (i.e., the LSST survey depths) (Graham et al. 2020). This makes it an ideal tool for early redshift estimation for the early photometric data from the Rubin Observatory.</p>
+								<p>Creating Test and Training Sets:<br>
+								The CMNN Estimator uses a training set with known spectroscopic redshifts to estimate photometric redshifts for a test set of galaxies. To create the training set a query is done within the Rubin Science Platform (RSP) to collect the u,g,r,z,y magnitudes of 100,000 galaxies with magnitudes between 17.0-29.0 mag. The 'i' magnitude are found observed magnitudes i >25 mag. This matches
+								the i≤25 mag "gold sample" defined by the Science Requirement Document (ls.st/lpm-17). The true redshift for each training galaxy is found from the truth summary tables of dp0.2 database. To create the test set, there are two input options for the query. One inputs a RA, DEC, and a radius from the user and performs a query within the given parameters in the RSP to collect the same data from the training set for 10,000 test galaxies. The other options inputs a diaObjectId from the user and
+								a 0.05 radius and gets the same information from all galaxies within the given parameters. The photometric error, σ rand, is given in Ivezić et al. (2019):
+								where m5 is the 5σ limiting magnitude, m is the magnitude of the galaxy, and for the LSST optical filters the values
+								for γ, are 0.037, 0.038, 0.039, 0.039, 0.04, and 0.04 for filters ugrizy, respectively.</p>
+								<p>CMNN Estimator: <br>
+								For each galaxy in the test set, the estimator identifies a color-matched subset of training galaxies by calculating the Mahalanobis distance in color-space between the test galaxy and all training galaxies. A threshold value is then applied to all
+								training-set galaxies to identify those which are well-matched in color, as defined by the percent point function (PPF): e.g., if the number of degrees of freedom Ncolor=5, PPF=68% of all training galaxies consistent with the test galaxy will
+								have DM<5.86. A training galaxy is then selected by weighing the random selection by the inverse of the DM (Graham et al. 2020) The program then returns the PhotoZ estimate and Photoz error.</p>
+								<p>Statistical Analysis:<br>
+								Of the 10,000 test galaxies in the set, only 7,409 galaxies were given a PhotoZ estimation. For the test galaxies with PhotoZ estimates, the mean PhotoZ was found to be 0.945 with a standard deviation of 0.467. The PhotoZ estimates are plotted against the True Z values in the figure above.</p>
 							</article>
 
 						<!-- About -->
