@@ -59,35 +59,61 @@
           <p>I contributed to the FOAMS project by assembling APOGEE abundance datasets and fitting them to nucleosynthesis models. The goal is to constrain the relative contribution of Type Ia and core‑collapse supernovae across the Milky Way. With a large dataset now prepared, the next phase will analyze which elements best reflect the underlying SN population ratios.</p>
         </article>
 
-        <!-- RESEARCH GALLERY -->
-        <article id="gallery">
-          <h2 class="major">Research Gallery</h2>
-          <p>A collection of simulation snapshots, visualizations, and movies from my work in GRMHD, stellar collapse, and transient astronomy. Add your files and captions, and the gallery will auto‑format them.</p>
+       <!-- Research Gallery -->
+<article id="gallery">
+    <h2 class="major">Research Gallery</h2>
+    <div class="gallery-grid">
 
-          <div class="gallery-container">
+        <!-- Full 3D Simulation -->
+        <div class="gallery-item">
+            <video controls>
+                <source src="images/AMR_0spin presentation (1).mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <p>A complete 3D visualization of a non-spinning collapsar simulation. Observe the formation of the accretion disk and the initial outflows as the stellar material collapses into a black hole.</p>
+        </div>
 
-            <!-- Placeholder example item 1 -->
-            <div class="gallery-item">
-              <img src="images/example1.png" alt="Simulation frame placeholder" />
-              <div class="gallery-item-title">Example image placeholder — replace with your file</div>
-            </div>
+        <!-- Magnetic Flux Comparisons -->
+        <div class="gallery-item">
+            <video controls>
+                <source src="images/compare1.mp4" type="video/mp4">
+            </video>
+            <p>Time-lapse comparison of magnetic flux eruptions at four key timesteps. These videos highlight how the poloidal and toroidal magnetic fields evolve and drive outflows during the collapse.</p>
+        </div>
+        <div class="gallery-item">
+            <video controls>
+                <source src="images/compare2.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="gallery-item">
+            <video controls>
+                <source src="images/compare3.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="gallery-item">
+            <video controls>
+                <source src="images/compare4.mp4" type="video/mp4">
+            </video>
+        </div>
 
-            <!-- Placeholder example item 2 -->
-            <div class="gallery-item">
-              <video src="videos/example_movie.mp4" autoplay loop muted></video>
-              <div class="gallery-item-title">Example movie placeholder — replace with your video</div>
-            </div>
+        <!-- Toroidal vs Poloidal Magnetic Flux -->
+        <div class="gallery-item side-by-side">
+            <img src="images/xy_bpol_tor_D2456 (2).png" alt="XY plane view of magnetic flux">
+            <img src="images/xz_bpol_tor_D2456 (2).png" alt="XZ plane view of magnetic flux">
+            <p>Comparison of toroidal vs poloidal magnetic flux at timestep D2456. Left: XY plane. Right: XZ plane. Shows how field geometry shapes outflows.</p>
+        </div>
 
-            <!-- Placeholder example item 3 -->
-            <div class="gallery-item">
-              <img src="images/example2.png" alt="Simulation slice" />
-              <div class="gallery-item-title">Another placeholder slot</div>
-            </div>
+        <!-- 2D Inner Jet Structure -->
+        <div class="gallery-item">
+            <video controls>
+                <source src="images/single.mp4" type="video/mp4">
+            </video>
+            <p>Close-up 2D view of the inner-most jet structure from the full simulation. Highlights acceleration and collimation along the rotation axis.</p>
+        </div>
 
-          </div>
+    </div>
+</article>
 
-          <p>Send me the filenames and captions for your actual gallery items, and I’ll replace these placeholders.</p>
-        </article>
 
       </div>
 
@@ -105,3 +131,4 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
+
