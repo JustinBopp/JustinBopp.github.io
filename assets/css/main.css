@@ -3,20 +3,21 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: 'Source Sans Pro', sans-serif;
-    background-color: #111; /* solid dark background for readability */
-    background-image: url("../../images/sim_desk.png");
-	background-position: center;
-	background-size: cover;
-	ackground-repeat: no-repeat;
+    background-color: #111; /* fallback dark background */
+    background-image: url("../images/sim_desk.png"); /* updated relative path */
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     color: #fff;
 }
 
 a {
-    color: #ffd700;
+    color: #ccc; /* changed from yellow to grey/white */
     text-decoration: none;
 }
 
 a:hover {
+    color: #fff; /* bright on hover */
     text-decoration: underline;
 }
 
@@ -66,6 +67,11 @@ nav ul {
 nav ul li a {
     font-weight: bold;
     font-size: 1rem;
+    color: #ccc; /* white/grey links */
+}
+
+nav ul li a:hover {
+    color: #fff;
 }
 
 /* Main content */
@@ -89,8 +95,10 @@ article p {
     margin-bottom: 1rem;
 }
 
+/* Images in articles */
 article img {
-    max-width: 100%;
+    max-width: 90%; /* unify sizes for all images */
+    height: auto;
     border-radius: 8px;
     display: block;
     margin: 1rem auto;
@@ -115,5 +123,7 @@ article img {
     nav ul {
         gap: 1rem;
     }
+    article img {
+        max-width: 100%; /* full width on small screens */
+    }
 }
-
