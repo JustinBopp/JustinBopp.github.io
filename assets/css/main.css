@@ -31,7 +31,7 @@ a:hover {
 }
 
 #header .image.avatar img {
-    width: 400px; /* larger headshot */
+    width: 200px; /* reasonable headshot size */
     max-width: 90%;
     height: auto;
     border-radius: 12px;
@@ -91,36 +91,6 @@ article img {
     border-radius: 8px;
     display: block;
     margin: 1rem auto;
-}
-
-/* Gallery Styles */
-.gallery-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
-
-.gallery-item {
-    background: rgba(0, 0, 0, 0.6);
-    border-radius: 8px;
-    overflow: hidden;
-    text-align: center;
-    padding: 0.5rem;
-}
-
-.gallery-item img,
-.gallery-item video {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 6px;
-    margin-bottom: 0.5rem;
-}
-
-.gallery-item-title {
-    font-size: 0.95rem;
-    padding: 0.3rem 0;
 }
 
 /* Footer */
