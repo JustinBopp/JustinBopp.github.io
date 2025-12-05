@@ -1,134 +1,112 @@
 <!DOCTYPE HTML>
 <html>
-  <head>
+<head>
     <title>Justin Bopp</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-  </head>
-  <body class="is-preload">
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
     <div id="wrapper">
-      <header id="header">
-        <div class="image">
-          <span class="image avatar"><img src="images/Headshot.jpg" alt=" " width="300" height="350" /></span>
-        </div>
-        <div class="content">
-          <div class="inner">
-            <h1>Justin Bopp</h1>
-            <p>PhD Student · Astrophysics & CMSE · Michigan State University</p>
-          </div>
-        </div>
-        <nav>
-          <ul>
-            <li><a href="#intro">About Me</a></li>
-            <li><a href="#work">Research</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="images/CV.pdf">CV</a></li>
-          </ul>
-        </nav>
-      </header>
 
-      <div id="main">
+        <!-- Header -->
+        <header id="header">
+            <div class="image">
+                <span class="image avatar">
+                    <img src="images/Headshot.jpg" alt="Justin Bopp">
+                </span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Justin Bopp</h1>
+                    <p>PhD Student in Astrophysics & Computational Mathematics, Science and Engineering<br>Michigan State University</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About Me</a></li>
+                    <li><a href="#research">Research</a></li>
+                    <li><a href="images/CV.pdf">CV</a></li>
+                </ul>
+            </nav>
+        </header>
 
-        <!-- ABOUT ME -->
-        <article id="intro">
-          <h2 class="major">About Me</h2>
-          <span class="image main"><img src="images/pic01.jpg" alt="" /></span>
-          <p>I am a Ph.D. student in Astrophysics & Computational Mathematics, Science and Engineering at Michigan State University, where I investigate compact objects, stellar explosions, and the extreme physics governing the most energetic events in the universe. My work sits at the intersection of high‑energy astrophysics, numerical simulations, and observational signatures of transient phenomena.</p>
+        <!-- Main -->
+        <div id="main">
 
-          <p>Before MSU, I completed my master’s degree at CUNY, working with Dr. Ore Gottlieb at the Center for Computational Astrophysics (Flatiron Institute). In that work, I analyzed 3D GRMHD simulations of collapsars—massive stars collapsing directly into black holes—with a focus on understanding how accretion‑disk dynamics generate outflows even in the absence of black hole spin.</p>
+            <!-- About -->
+            <article id="about">
+                <h2 class="major">About Me</h2>
+                <span class="image main"><img src="images/pic01.jpg" alt="Justin working on simulations"></span>
+                <p>I am a Ph.D. student at Michigan State University studying compact objects, relativistic phenomena, and the explosive deaths of massive stars. My research bridges high-energy astrophysics, numerical simulations, and observable cosmic signatures.</p>
+                <p>Previously, at CUNY for my master’s degree, I studied core-collapse supernovae collapsing into black holes using 3D GRMHD simulations. My work showed that even non-spinning black holes can produce subrelativistic outflows via accretion-disk dynamics, unbinding the stellar envelope and connecting spherical core-collapse to relativistic gamma-ray bursts. This formed my master’s thesis and first first-author publication.</p>
+                <p>I’m also passionate about mentorship and outreach, working with programs like AstroCom NYC and MSU Stellar Mentorship, and organizing public events like CSUS Astronomy Night to make astrophysics accessible and inspire future scientists.</p>
+            </article>
 
-          <p>Alongside research, I care deeply about mentorship, accessibility, and representation in STEM. Through programs such as AstroCom NYC, MSU Stellar Mentorship, and my outreach work organizing astronomy events, I aim to help build a more inclusive astrophysics community. My long‑term goal is a career in academia combining research, teaching, and community building.</p>
-        </article>
+            <!-- Research Gallery -->
+            <article id="research">
+                <h2 class="major">Research Gallery</h2>
 
-        <!-- RESEARCH SECTION -->
-        <article id="work">
-          <h2 class="major">Research</h2>
+                <!-- 3D Simulation Video -->
+                <div class="gallery-item">
+                    <video controls>
+                        <source src="assets/videos/AMR_0spin presentation (1).mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p><b>Full 3D Simulation of a Zero-Spin Collapsar:</b> Visualization of the outflows from a non-rotating black hole collapsar, highlighting the accretion-disk-driven dynamics unbinding the star.</p>
+                </div>
 
-          <span class="image main"><img src="images/3d_nospin2.png" alt="Non‑spinning collapsar visualization" /></span>
-          <center><b><font size="5">GRMHD Simulations of Non‑Spinning Black Hole Collapsars</font></b></center>
-          <p>My thesis work investigates the dynamical behavior of collapsars using the 3D GRMHD code HAMR. I simulate massive stellar collapse across different initial black hole spins. A major finding: even a non‑spinning black hole can launch subrelativistic, disk‑powered outflows capable of breaking out of the progenitor star—offering new insight into the transition between ordinary CCSNe and GRB‑producing collapsars.</p>
+                <!-- Magnetic Flux Comparison -->
+                <div class="gallery-item">
+                    <h3>Magnetic Flux Eruption Comparison</h3>
+                    <div class="video-grid">
+                        <video controls><source src="assets/videos/compare1.mp4" type="video/mp4"></video>
+                        <video controls><source src="assets/videos/compare2.mp4" type="video/mp4"></video>
+                        <video controls><source src="assets/videos/compare3.mp4" type="video/mp4"></video>
+                        <video controls><source src="assets/videos/compare4.mp4" type="video/mp4"></video>
+                    </div>
+                    <p>These four videos compare magnetic flux eruptions at different timesteps, showing the evolution of field structures and instabilities during the collapsar outflows.</p>
+                </div>
 
-          <span class="image main"><img src="images/Potential_Host_Galaxies4.png" alt="Rubin LSST DP0.2 visualization" /></span>
-          <center><b><font size="5">Rubin Observatory DP0.2 Delegate</font></b></center>
-          <p>I adapted and implemented a Color‑Match Nearest Neighbor (CMNN) photometric redshift estimator for LSST Data Preview 0.2. This work matched transients to likely host galaxies and supported early LSST science development. Results were presented at AAS and APS meetings.</p>
+                <!-- Magnetic Flux Side-by-Side Images -->
+                <div class="gallery-item">
+                    <h3>Toroidal vs Poloidal Magnetic Flux</h3>
+                    <div class="image-grid">
+                        <img src="assets/images/xy_bpol_tor_D2456 (2).png" alt="Toroidal vs Poloidal Magnetic Flux XY-plane">
+                        <img src="assets/images/xz_bpol_tor_D2456 (2).png" alt="Toroidal vs Poloidal Magnetic Flux XZ-plane">
+                    </div>
+                    <p>Side-by-side comparison of toroidal and poloidal magnetic flux components in the collapsar simulation, illustrating the anisotropy and spatial distribution of the fields.</p>
+                </div>
 
-          <span class="image main"><img src="images/IaHist.png" alt="FOAMS abundance matching" /></span>
-          <center><b><font size="5">FOAMS: Chemical Evolution Modeling</font></b></center>
-          <p>I contributed to the FOAMS project by assembling APOGEE abundance datasets and fitting them to nucleosynthesis models. The goal is to constrain the relative contribution of Type Ia and core‑collapse supernovae across the Milky Way. With a large dataset now prepared, the next phase will analyze which elements best reflect the underlying SN population ratios.</p>
-        </article>
+                <!-- Inner Jet Section -->
+                <div class="gallery-item">
+                    <video controls>
+                        <source src="assets/videos/single.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p><b>2D Inner Jet Section:</b> Focused view of the innermost jet region, highlighting dynamics near the black hole and the early stages of jet collimation.</p>
+                </div>
 
-       <!-- Research Gallery -->
-<article id="gallery">
-    <h2 class="major">Research Gallery</h2>
-    <div class="gallery-grid">
+            </article>
 
-        <!-- Full 3D Simulation -->
-        <div class="gallery-item">
-            <video controls>
-                <source src="images/AMR_0spin presentation (1).mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <p>A complete 3D visualization of a non-spinning collapsar simulation. Observe the formation of the accretion disk and the initial outflows as the stellar material collapses into a black hole.</p>
-        </div>
-
-        <!-- Magnetic Flux Comparisons -->
-        <div class="gallery-item">
-            <video controls>
-                <source src="images/compare1.mp4" type="video/mp4">
-            </video>
-            <p>Time-lapse comparison of magnetic flux eruptions at four key timesteps. These videos highlight how the poloidal and toroidal magnetic fields evolve and drive outflows during the collapse.</p>
-        </div>
-        <div class="gallery-item">
-            <video controls>
-                <source src="images/compare2.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="gallery-item">
-            <video controls>
-                <source src="images/compare3.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="gallery-item">
-            <video controls>
-                <source src="images/compare4.mp4" type="video/mp4">
-            </video>
         </div>
 
-        <!-- Toroidal vs Poloidal Magnetic Flux -->
-        <div class="gallery-item side-by-side">
-            <img src="images/xy_bpol_tor_D2456 (2).png" alt="XY plane view of magnetic flux">
-            <img src="images/xz_bpol_tor_D2456 (2).png" alt="XZ plane view of magnetic flux">
-            <p>Comparison of toroidal vs poloidal magnetic flux at timestep D2456. Left: XY plane. Right: XZ plane. Shows how field geometry shapes outflows.</p>
-        </div>
-
-        <!-- 2D Inner Jet Structure -->
-        <div class="gallery-item">
-            <video controls>
-                <source src="images/single.mp4" type="video/mp4">
-            </video>
-            <p>Close-up 2D view of the inner-most jet structure from the full simulation. Highlights acceleration and collimation along the rotation axis.</p>
-        </div>
+        <!-- Footer -->
+        <footer id="footer">
+            <p class="copyright">&copy; Justin Bopp. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
 
     </div>
-</article>
 
-
-      </div>
-
-      <footer id="footer">
-        <p class="copyright">© 2025 Justin Bopp. Design adapted from HTML5 UP.</p>
-      </footer>
-    </div>
-
-    <div id="bg"></div>
-
+    <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/browser.min.js"></script>
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
-  </body>
-</html>
 
+</body>
+</html>
