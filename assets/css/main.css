@@ -1,49 +1,52 @@
-/* Body Background */
-body {
+/* Reset and base */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Source Sans Pro', sans-serif;
     background: url('../images/sim_desk.png') no-repeat center center fixed;
     background-size: cover;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #fff;
 }
 
-/* Header Avatar */
+/* Header */
+#header {
+    text-align: center;
+}
+
 #header .image.avatar img {
-    width: 400px;
+    width: 350px;
+    max-width: 90%;
     height: auto;
     border-radius: 10px;
     display: block;
     margin: 0 auto;
 }
 
-/* Wrapper overlay for readability */
-#wrapper::before {
-    content: "";
-    position: absolute;
-    top:0; left:0; right:0; bottom:0;
-    background: rgba(0,0,0,0.3);
-    z-index: -1;
-}
-
-/* Main content styling */
+/* Main content */
 #main {
-    padding: 3rem 2rem;
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* Research Gallery */
+/* Gallery */
 .gallery-item {
     margin-bottom: 3rem;
 }
 
 .gallery-item video, .gallery-item img {
+    width: 100%;
     max-width: 100%;
-    border-radius: 8px;
-    margin-bottom: 1rem;
+    border-radius: 6px;
+    display: block;
+    margin: 0 auto 0.5rem auto;
 }
 
 .video-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 1rem;
+    margin-bottom: 1rem;
 }
 
 .image-grid {
@@ -57,24 +60,19 @@ body {
     height: auto;
 }
 
-/* Headings */
-h2.major {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
+/* Footer */
+#footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    background-color: rgba(0,0,0,0.6);
 }
 
-h3 {
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
+/* Links */
+a {
+    color: #fff;
+    text-decoration: underline;
 }
 
-/* Responsive adjustments */
-@media screen and (max-width: 768px) {
-    #header .image.avatar img {
-        width: 250px;
-    }
-
-    .image-grid img {
-        flex: 1 1 100%;
-    }
+a:hover {
+    color: #ffd700;
 }
