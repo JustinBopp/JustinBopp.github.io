@@ -1,240 +1,80 @@
-/* ========================================================================== 
-   MAIN STYLESHEET - Modernized for Justin Bopp Homepage
-   ========================================================================== */
-
-/* ----------------------------------------------
-   BASE STYLES
------------------------------------------------- */
-
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background: #0a0a0a;
-    color: #eaeaea;
-    line-height: 1.7;
+/* Body Background */
+body {
+    background: url('../images/sim_desk.png') no-repeat center center fixed;
+    background-size: cover;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #fff;
 }
 
-a {
-    color: #f2b632;
-    text-decoration: none;
-}
-
-a:hover {
-    color: #ffcc66;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-weight: 700;
-    color: #ffffff;
-}
-
-p {
-    margin-bottom: 1.2rem;
-}
-
-/* ----------------------------------------------
-   WRAPPER
------------------------------------------------- */
-
-#wrapper {
-    width: 90%;
-    max-width: 1200px;
+/* Header Avatar */
+#header .image.avatar img {
+    width: 400px;
+    height: auto;
+    border-radius: 10px;
+    display: block;
     margin: 0 auto;
-    padding: 2rem 0;
 }
 
-/* ----------------------------------------------
-   HEADER
------------------------------------------------- */
+/* Wrapper overlay for readability */
+#wrapper::before {
+    content: "";
+    position: absolute;
+    top:0; left:0; right:0; bottom:0;
+    background: rgba(0,0,0,0.3);
+    z-index: -1;
+}
 
-#header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+/* Main content styling */
+#main {
+    padding: 3rem 2rem;
+}
+
+/* Research Gallery */
+.gallery-item {
     margin-bottom: 3rem;
 }
 
-#header .image.avatar img {
-    border-radius: 50%;
-    border: 3px solid #f2b632;
-    width: 250px;
-    height: 250px;
-    object-fit: cover;
+.gallery-item video, .gallery-item img {
+    max-width: 100%;
+    border-radius: 8px;
     margin-bottom: 1rem;
 }
 
-#header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-}
-
-#header p {
-    font-size: 1rem;
-    color: #ccc;
-}
-
-/* ----------------------------------------------
-   NAVIGATION
------------------------------------------------- */
-
-nav ul {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-    padding: 0;
-    margin-top: 1rem;
-    justify-content: center;
-}
-
-nav ul li a {
-    font-weight: bold;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    transition: background 0.3s ease;
-}
-
-nav ul li a:hover {
-    background: #f2b632;
-    color: #0a0a0a;
-}
-
-/* ----------------------------------------------
-   ARTICLES / SECTIONS
------------------------------------------------- */
-
-article {
-    margin-bottom: 4rem;
-}
-
-article h2.major {
-    font-size: 2rem;
-    border-bottom: 2px solid #f2b632;
-    padding-bottom: 0.5rem;
-    margin-bottom: 2rem;
-}
-
-/* ----------------------------------------------
-   MAIN IMAGES
------------------------------------------------- */
-
-.image.main img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    display: block;
-    margin: 1rem auto;
-}
-
-/* ----------------------------------------------
-   RESEARCH GALLERY
------------------------------------------------- */
-
-.gallery-grid {
+.video-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
 }
 
-.gallery-item {
-    background: #1a1a1a;
-    padding: 1rem;
-    border-radius: 10px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.image-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
-.gallery-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+.image-grid img {
+    flex: 1 1 48%;
+    height: auto;
 }
 
-.gallery-item video,
-.gallery-item img {
-    width: 100%;
-    border-radius: 8px;
-    display: block;
+/* Headings */
+h2.major {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+h3 {
+    margin-top: 1rem;
     margin-bottom: 0.5rem;
 }
 
-.side-by-side {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    #header .image.avatar img {
+        width: 250px;
+    }
 
-.side-by-side img {
-    flex: 1 1 48%;
-}
-
-/* ----------------------------------------------
-   FORMS
------------------------------------------------- */
-
-form {
-    margin-top: 2rem;
-}
-
-.fields {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.field {
-    flex: 1 1 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.field.half {
-    flex: 1 1 calc(50% - 0.5rem);
-}
-
-input, select, textarea {
-    padding: 0.5rem;
-    border-radius: 5px;
-    border: 1px solid #333;
-    background: #0a0a0a;
-    color: #eaeaea;
-}
-
-input[type="submit"], .button {
-    background: #f2b632;
-    border: none;
-    color: #0a0a0a;
-    font-weight: bold;
-    padding: 0.7rem 1.5rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-input[type="submit"]:hover, .button:hover {
-    background: #ffcc66;
-}
-
-/* ----------------------------------------------
-   FOOTER
------------------------------------------------- */
-
-#footer {
-    text-align: center;
-    margin-top: 4rem;
-    padding: 2rem 0;
-    border-top: 1px solid #333;
-    color: #aaa;
-}
-
-/* ----------------------------------------------
-   MEDIA QUERIES
------------------------------------------------- */
-
-@media (max-width: 768px) {
-    .side-by-side {
-        flex-direction: column;
+    .image-grid img {
+        flex: 1 1 100%;
     }
 }
