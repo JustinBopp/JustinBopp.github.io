@@ -1,10 +1,10 @@
 :root {
-  --bg: #111827;
-  --panel: rgba(23, 31, 51, 0.76);
-  --panel-border: rgba(148, 163, 184, 0.18);
-  --text: #edf2f7;
-  --muted: #b8c2d3;
-  --accent: #9cc3ff;
+  --bg: #0d0d0d;
+  --panel: rgba(24, 24, 24, 0.88);
+  --panel-border: rgba(255, 255, 255, 0.12);
+  --text: #f5f5f5;
+  --muted: #c7c7c7;
+  --accent: #ffffff;
   --shadow: 0 24px 70px rgba(2, 6, 23, 0.4);
   --radius-lg: 28px;
   --radius-md: 20px;
@@ -28,9 +28,9 @@ body {
   font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
   line-height: 1.65;
   background:
-    radial-gradient(circle at top left, rgba(156, 195, 255, 0.16), transparent 28%),
-    radial-gradient(circle at top right, rgba(226, 232, 240, 0.08), transparent 24%),
-    linear-gradient(135deg, #0b1220 0%, #111827 48%, #1f2a44 100%);
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), transparent 24%),
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.04), transparent 20%),
+    linear-gradient(135deg, #050505 0%, #101010 50%, #1a1a1a 100%);
 }
 
 a {
@@ -74,7 +74,7 @@ code {
   padding: 1rem 1.25rem;
   border: 1px solid var(--panel-border);
   border-radius: 999px;
-  background: rgba(8, 16, 31, 0.74);
+  background: rgba(10, 10, 10, 0.82);
   backdrop-filter: blur(16px);
   box-shadow: var(--shadow);
 }
@@ -103,8 +103,8 @@ code {
 .site-nav a:hover,
 .site-nav a.is-active {
   color: var(--text);
-  border-color: rgba(156, 195, 255, 0.34);
-  background: rgba(156, 195, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.26);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 main {
@@ -141,7 +141,7 @@ main {
   padding: 1rem;
   border: 1px solid var(--panel-border);
   border-radius: var(--radius-md);
-  background: rgba(15, 23, 42, 0.5);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .hero-portrait {
@@ -153,14 +153,14 @@ main {
 .hero h1 {
   margin: 0;
   max-width: 14ch;
-  font-size: clamp(1.5rem, 2.4vw, 2.35rem);
-  line-height: 1.08;
+  font-size: clamp(1.15rem, 1.55vw, 1.7rem);
+  line-height: 1.18;
 }
 
 .page-intro h1 {
   margin: 0;
   max-width: 14ch;
-  font-size: clamp(1.9rem, 3.2vw, 2.9rem);
+  font-size: clamp(1.7rem, 2.6vw, 2.35rem);
   line-height: 1.08;
 }
 
@@ -209,8 +209,8 @@ main {
 }
 
 .button-primary {
-  border-color: rgba(156, 195, 255, 0.4);
-  background: linear-gradient(135deg, rgba(156, 195, 255, 0.22), rgba(99, 102, 241, 0.18));
+  border-color: rgba(255, 255, 255, 0.22);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
 }
 
 .text-link {
@@ -242,7 +242,7 @@ main {
   padding: 1.5rem;
   border: 1px solid var(--panel-border);
   border-radius: var(--radius-md);
-  background: rgba(15, 23, 42, 0.62);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .card h2,
@@ -264,6 +264,22 @@ main {
 
 .page-intro {
   padding: clamp(1.6rem, 3vw, 2.4rem);
+}
+
+.about-photo {
+  width: min(100%, 230px);
+  margin: 0 auto 1rem;
+  border-radius: 14px;
+}
+
+.meta-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--muted);
+}
+
+.meta-list li {
+  margin-bottom: 0.55rem;
 }
 
 .content-grid-two {
