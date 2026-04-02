@@ -245,6 +245,13 @@ main {
   background: rgba(255, 255, 255, 0.03);
 }
 
+.project-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  margin-bottom: 1rem;
+  object-fit: cover;
+}
+
 .card h2,
 .project-card h2,
 .panel h2 {
@@ -307,6 +314,35 @@ main {
   background: #000000;
 }
 
+.video-frame-compact {
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.media-grid-two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.media-card {
+  padding: 1rem;
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.media-card .video-frame,
+.media-card img {
+  margin-top: 0;
+}
+
+.media-caption {
+  margin-top: 1rem;
+  color: var(--muted);
+}
+
 .note {
   font-size: 0.95rem;
 }
@@ -330,7 +366,8 @@ main {
   .content-grid,
   .content-grid-two,
   .project-grid,
-  .gallery-grid {
+  .gallery-grid,
+  .media-grid-two {
     grid-template-columns: 1fr;
   }
 

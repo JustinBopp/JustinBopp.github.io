@@ -22,6 +22,7 @@
         <nav class="site-nav" aria-label="Main navigation">
           <a href="../../index.html">Home</a>
           <a href="../../about/">About Me</a>
+          <a href="../../Teaching_Outreach/">Teaching / Outreach</a>
           <a class="is-active" href="../">Research</a>
           <a href="../../cv/">CV / ADS</a>
         </nav>
@@ -77,7 +78,7 @@
         <section class="panel">
           <h2>Plots and Figures</h2>
           <p>
-            The blocks below already use your existing project images. Duplicate any <code>figure</code>
+            The figures below use your existing project images. Duplicate any <code>figure</code>
             block if you want to add more snapshots, slices, or annotated plots later.
           </p>
 
@@ -102,21 +103,13 @@
                 Cross-sectional view showing the outflow channel and the surrounding stellar material.
               </figcaption>
             </figure>
-
-            <figure class="gallery-card">
-              <img src="../../images/sim_desk.png" alt="Simulation workspace or overview image." />
-              <figcaption>
-                Workspace and simulation context image you can keep or replace with another results figure.
-              </figcaption>
-            </figure>
           </div>
         </section>
 
         <section class="panel">
-          <h2>Video</h2>
+          <h2>Animation</h2>
           <p>
-            This section uses one of your current local videos as a working example. If you want to add more,
-            duplicate the <code>video</code> block or move future files into <code>assets/media/</code>.
+            The main animation is shown in a smaller frame here so it does not dominate the whole page.
           </p>
 
           <!--
@@ -125,15 +118,54 @@
             2. Replace only the filename if you swap videos.
             3. The poster image is optional.
           -->
-          <video class="video-frame" controls preload="metadata" poster="../../images/3d_nospin2.png">
+          <video class="video-frame video-frame-compact" controls preload="metadata" poster="../../images/3d_nospin2.png">
             <source src="../../images/AMR_0spin presentation (1).mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
+        </section>
 
-          <p class="note">
-            If you want to swap this out later, update the filename in the <code>source</code> tag and keep the
-            relative path format the same.
+        <section class="panel">
+          <h2>Comparison Movies</h2>
+          <div class="media-grid-two">
+            <div class="media-card">
+              <video class="video-frame" controls preload="metadata">
+                <source src="../../images/compare1.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+
+            <div class="media-card">
+              <video class="video-frame" controls preload="metadata">
+                <source src="../../images/compare2.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+
+            <div class="media-card">
+              <video class="video-frame" controls preload="metadata">
+                <source src="../../images/compare3.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+
+            <div class="media-card">
+              <video class="video-frame" controls preload="metadata">
+                <source src="../../images/compare4.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <p class="media-caption">
+            Comparison movies showing different simulation setups and the resulting outflow evolution.
           </p>
+        </section>
+
+        <section class="panel">
+          <h2>Additional Movie</h2>
+          <video class="video-frame video-frame-compact" controls preload="metadata">
+            <source src="../../images/single.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </section>
 
         <section class="panel">
