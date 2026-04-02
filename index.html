@@ -1,157 +1,121 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-  <title>Justin Bopp</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <link rel="stylesheet" href="assets/css/main.css" />
-  <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-</head>
-<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Justin Bopp | Astrophysics</title>
+    <meta
+      name="description"
+      content="Justin Bopp's academic website with research projects, background information, and CV."
+    />
+    <link rel="stylesheet" href="assets/css/site.css" />
+  </head>
+  <body>
+    <!--
+      SITE STRUCTURE NOTES
+      ====================
+      Main pages:
+      - /index.html
+      - /about/index.html
+      - /research/index.html
+      - /cv/index.html
 
-  <!-- Background -->
-  <div id="bg"></div>
+      Research subpages:
+      - /research/project-name/index.html
 
-  <div id="wrapper">
+      Hidden pages:
+      - /hidden/some-page/index.html
+      Hidden pages are accessible by direct URL, but stay "hidden" as long as
+      you do not add them to the visible navigation.
+    -->
 
-    <!-- HEADER -->
-    <header id="header">
-      <div class="image">
-        <span class="image avatar"><img src="images/Headshot.jpg" alt="Justin Bopp Headshot" /></span>
-      </div>
-      <div class="content">
-        <div class="inner">
-          <h1>Justin Bopp</h1>
-          <p>PhD Student · Astrophysics & CMSE · Michigan State University</p>
-        </div>
-      </div>
-      <nav>
-        <ul>
-          <li><a href="#intro">About Me</a></li>
-          <li><a href="#work">Research</a></li>
-          <li><a href="images/CV.pdf">CV</a></li>
-        </ul>
-      </nav>
-    </header>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="site-brand" href="index.html">Justin Bopp</a>
+        <nav class="site-nav" aria-label="Main navigation">
+          <a class="is-active" href="index.html">Home</a>
+          <a href="about/">About Me</a>
+          <a href="research/">Research</a>
+          <a href="cv/">CV</a>
+        </nav>
+      </header>
 
-    <!-- MAIN CONTENT -->
-    <div id="main">
+      <main>
+        <section class="hero hero-split">
+          <div class="hero-copy-wrap">
+            <p class="eyebrow">PhD Student • Astrophysics & CMSE • Michigan State University</p>
+            <h1>Compact objects, stellar explosions, and extreme astrophysical environments.</h1>
+            <p class="hero-copy">
+              This site now uses a simple multi-page structure so you can keep your public homepage clean,
+              give each research project its own subpage, and add plots or videos without editing one huge file.
+            </p>
+            <div class="button-row">
+              <a class="button button-primary" href="research/">View Research</a>
+              <a class="button" href="about/">About Me</a>
+              <a class="button" href="cv/">Read CV</a>
+            </div>
+          </div>
 
-      <!-- ABOUT ME -->
-      <article id="intro">
-        <h2 class="major">About Me</h2>
-        <span class="image main"><img src="images/1f09ea1a-6135-4152-93c9-7d5f98d9c75e.JPG" alt="Justin Bopp at work" /></span>
-        <p>I am a Ph.D. student in Astrophysics & Computational Mathematics, Science and Engineering at Michigan State University, where I investigate compact objects, stellar explosions, and the extreme physics governing the most energetic events in the universe. My work sits at the intersection of high‑energy astrophysics, numerical simulations, and observational signatures of transient phenomena.</p>
-        <p>Before MSU, I completed my master’s degree at CUNY, working with Dr. Ore Gottlieb at the Center for Computational Astrophysics (Flatiron Institute). In that work, I analyzed 3D GRMHD simulations of collapsars—massive stars collapsing directly into black holes—with a focus on understanding how accretion‑disk dynamics generate outflows even in the absence of black hole spin.</p>
-        <p>Alongside research, I care deeply about mentorship, accessibility, and representation in STEM. Through programs such as AstroCom NYC, MSU Stellar Mentorship, and my outreach work organizing astronomy events, I aim to help build a more inclusive astrophysics community. My long‑term goal is a career in academia combining research, teaching, and community building.</p>
-      </article>
+          <div class="hero-portrait-card">
+            <img
+              class="hero-portrait"
+              src="images/Headshot.jpg"
+              alt="Portrait of Justin Bopp"
+            />
+          </div>
+        </section>
 
-      <!-- RESEARCH -->
-      <article id="work">
-        <h2 class="major">Research</h2>
+        <section class="section-grid">
+          <article class="card">
+            <p class="card-label">About Me</p>
+            <h2>Research background and academic path</h2>
+            <p>
+              Learn more about my work in high-energy astrophysics, numerical simulations,
+              mentorship, and long-term research goals.
+            </p>
+            <a class="text-link" href="about/">Go to About Me</a>
+          </article>
 
-        <span class="image main"><img src="images/3d_nospin2.png" alt="Non-spinning collapsar visualization" /></span>
-        <center><b><font size="5">GRMHD Simulations of Non‑Spinning Black Hole Collapsars</font></b></center>
-        <p>
-          My thesis research at the City University of New York (CUNY), conducted at the
-          Center for Computational Astrophysics (CCA) at the Flatiron Institute under the
-          supervision of Dr. Ore Gottlieb, investigates the dynamical evolution of
-          collapsars—core-collapse supernovae that directly form black holes. Using the 3D
-          GRMHD code <em>HAMR</em>, I simulate massive stellar collapse across a range of
-          initial black hole natal spins to quantify how rotation influences accretion disk
-          formation, magnetic flux accumulation, and the launching of outflows.
-        </p>
-        
-        <p>
-          A central finding of my work is that even a non-spinning black hole can produce
-          vigorous, subrelativistic, disk-powered outflows driven solely by the angular
-          momentum of the nascent accretion disk. These outflows propagate through the
-          stellar envelope and ultimately break out of the progenitor’s surface, unbinding
-          the star as it expands into the interstellar medium. Notably, this is the <strong>first
-          simulation</strong> to demonstrate stellar breakout from outflows powered exclusively
-          by an accretion disk, offering new insight into the continuum between ordinary
-          CCSNe and relativistic GRB-producing collapsars.
-        </p>
-        
-        <p>
-          Through this work, I’ve developed expertise in high-performance computing,
-          GRMHD simulations, and scientific communication. A related publication can be
-          found here:
-          <a href="https://ui.adsabs.harvard.edu/abs/2025ApJ...982L..56B/abstract" target="_blank">
-            Bopp & Gottlieb et al. (2025)
-          </a>.
-        </p>
+          <article class="card">
+            <p class="card-label">Research</p>
+            <h2>Project pages with plots and videos</h2>
+            <p>
+              The research section is now organized as an index of projects, with dedicated subpages
+              for simulation figures, writeups, and media.
+            </p>
+            <a class="text-link" href="research/">Browse Research</a>
+          </article>
 
-        <span class="image main"><img src="images/Potential_Host_Galaxies4.png" alt="Rubin LSST DP0.2 visualization" /></span>
-        <center><b><font size="5">Rubin Observatory DP0.2 Delegate</font></b></center>
-        <p>
-          Under the guidance of Dr. Brian Morsony, I contributed to the Rubin Observatory’s
-          Data Preview 0.2 by adapting and implementing a Color-Match Nearest Neighbor
-          (CMNN) photometric redshift estimator for simulated LSST datasets. This project
-          played a key role in preparing for the launch of the Legacy Survey of Space and
-          Time (LSST), rigorously testing early data-processing pipelines using DP0.2
-          galaxy catalogs. By tailoring the CMNN PhotoZ algorithm for LSST data products,
-          I produced accurate photometric redshift estimates without spectroscopic inputs—a
-          capability that will be essential once LSST begins generating its unprecedented
-          volume of observations.
-        </p>
-        
-        <p>
-          In addition to redshift estimation, I developed methods to associate simulated
-          Type Ia supernovae with their likely host galaxies, supporting the broader goal of
-          enabling reliable transient–host matching for early LSST science. Through this
-          work, I gained experience with large-scale astronomical datasets, machine-learning
-          methodologies, and pipeline development for next-generation survey science.
-          Results from this project were presented at both AAS and APS meetings.
-        </p>
-        <span class="image main"><img src="images/IaHist.png" alt="FOAMS abundance matching" /></span>
-        <center><b><font size="5">FOAMS: Chemical Evolution Modeling</font></b></center>
-        <p>
-          As part of Dr. Brian Morsony’s Fitting Observed Abundances to Metals from
-          Supernovae (FOAMS) project, I investigated the relative contributions of Type Ia
-          and core-collapse supernovae (CCSNe) to the chemical enrichment of the Milky
-          Way. The FOAMS framework compares observed stellar abundances with theoretical
-          nucleosynthesis yields, enabling constraints on the underlying supernova
-          progenitor populations that shape Galactic chemical evolution.
-        </p>
-        
-        <p>
-          My role centered on assembling and processing large stellar abundance datasets
-          from the APOGEE survey. I curated elemental abundance measurements across the
-          Milky Way and fit them to nucleosynthesis models using the FOAMS pipeline to
-          infer the ratios of Type Ia to CCSNe progenitors. This effort culminated in the
-          construction of a catalog that maps these supernova population ratios throughout
-          the Galaxy. With this foundational dataset prepared, the next phase will focus on
-          identifying which chemical elements serve as the most reliable tracers of the
-          underlying supernova mix.
-        </p>
-        
-        <p>
-          Through this project, I strengthened my skills in statistical analysis,
-          computational modeling, and the interpretation of complex astrophysical datasets.
-          The experience deepened my understanding of Galactic chemical evolution and
-          reinforced my commitment to a research career in astrophysics.
-        </p>
-      </article>
+          <article class="card">
+            <p class="card-label">CV</p>
+            <h2>Summary page with downloadable PDF</h2>
+            <p>
+              The CV page includes a quick summary and links to your existing PDF for easy download.
+            </p>
+            <a class="text-link" href="cv/">Open CV Page</a>
+          </article>
+        </section>
 
+        <section class="panel">
+          <p class="eyebrow">Editing Help</p>
+          <h2>What changed from the old template?</h2>
+          <p>
+            The old site relied on popup sections inside a single HTML file. This new setup uses one file
+            per page, which makes research projects, subpages, and media management much easier.
+          </p>
+          <ul class="feature-list">
+            <li>Add a new research project by copying an existing folder inside <code>research/</code>.</li>
+            <li>Add plots by uploading images and duplicating a gallery block on a project page.</li>
+            <li>Add videos by uploading an <code>.mp4</code> file and updating the sample video block.</li>
+            <li>Create direct-link-only pages inside <code>hidden/</code> and do not add them to navigation.</li>
+          </ul>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>Justin Bopp</p>
+        <p class="footer-muted">Built for simple GitHub Pages editing and future research updates.</p>
+      </footer>
     </div>
-
-    <!-- FOOTER -->
-    <footer id="footer">
-      <p class="copyright">© 2025 Justin Bopp. Design adapted from HTML5 UP.</p>
-    </footer>
-
-  </div>
-
-  <!-- Scripts -->
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/browser.min.js"></script>
-  <script src="assets/js/breakpoints.min.js"></script>
-  <script src="assets/js/util.js"></script>
-  <script src="assets/js/main.js"></script>
-
-</body>
+  </body>
 </html>
-
-
-
