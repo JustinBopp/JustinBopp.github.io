@@ -5,7 +5,7 @@
   --text: #f5f5f5;
   --muted: #c7c7c7;
   --accent: #ffffff;
-  --shadow: 0 24px 70px rgba(2, 6, 23, 0.4);
+  --shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
   --radius-lg: 28px;
   --radius-md: 20px;
   --max-width: 1120px;
@@ -47,7 +47,7 @@ img {
 code {
   padding: 0.1rem 0.35rem;
   border-radius: 0.4rem;
-  background: rgba(148, 163, 184, 0.16);
+  background: rgba(255, 255, 255, 0.08);
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   font-size: 0.92em;
 }
@@ -196,16 +196,16 @@ main {
   align-items: center;
   justify-content: center;
   padding: 0.85rem 1.15rem;
-  border: 1px solid rgba(148, 163, 184, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 999px;
-  background: rgba(148, 163, 184, 0.08);
+  background: rgba(255, 255, 255, 0.04);
   color: var(--text);
   transition: transform 0.2s ease, background 0.2s ease;
 }
 
 .button:hover {
   transform: translateY(-1px);
-  background: rgba(148, 163, 184, 0.16);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .button-primary {
@@ -304,7 +304,7 @@ main {
   margin-top: 1rem;
   border: 1px solid var(--panel-border);
   border-radius: 18px;
-  background: #020617;
+  background: #000000;
 }
 
 .note {

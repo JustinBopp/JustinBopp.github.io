@@ -12,24 +12,15 @@
   </head>
   <body>
     <!--
-      SITE STRUCTURE NOTES
+      HOME PAGE EDIT GUIDE
       ====================
-      Main pages:
-      - /index.html
-      - /about/index.html
-      - /research/index.html
-      - /cv/index.html
-
-      Research subpages:
-      - /research/project-name/index.html
-
-      Hidden pages:
-      - /hidden/some-page/index.html
-      Hidden pages are accessible by direct URL, but stay "hidden" as long as
-      you do not add them to the visible navigation.
+      - Update the hero text when your role or research focus changes.
+      - Update the summary cards if you rename or reorganize sections of the site.
+      - Keep the nav links here in sync with the nav on the other pages.
     -->
 
     <div class="site-shell">
+      <!-- SHARED NAVIGATION -->
       <header class="site-header">
         <a class="site-brand" href="index.html">Justin Bopp</a>
         <nav class="site-nav" aria-label="Main navigation">
@@ -41,6 +32,7 @@
       </header>
 
       <main>
+        <!-- HERO SECTION: short homepage intro -->
         <section class="hero hero-split">
           <div class="hero-copy-wrap">
             <p class="eyebrow">PhD Student • Astrophysics & CMSE • Michigan State University</p>
@@ -64,6 +56,7 @@
           </div>
         </section>
 
+        <!-- SUMMARY CARDS: quick links to the main sections -->
         <section class="section-grid">
           <article class="card">
             <p class="card-label">About Me</p>

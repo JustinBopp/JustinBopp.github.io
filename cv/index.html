@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="../assets/css/site.css" />
   </head>
   <body>
+    <!--
+      CV / ADS PAGE EDIT GUIDE
+      ========================
+      - Update the CV PDF link if you move or rename the file.
+      - Update the ADS link only if your author query changes.
+      - Add or remove link panels if you want more external links later.
+      - Use the publications and talks sections below as editable lists from your CV.
+    -->
     <div class="site-shell">
       <header class="site-header">
         <a class="site-brand" href="../index.html">Justin Bopp</a>
@@ -29,6 +37,7 @@
         </section>
 
         <section class="content-grid">
+          <!-- LINK PANELS: each panel below is one external resource -->
           <article class="panel">
             <h2>Curriculum Vitae</h2>
             <p>Download the latest PDF version of my CV.</p>
@@ -66,6 +75,61 @@
               </a>
             </p>
           </article>
+        </section>
+
+        <section class="content-grid content-grid-two">
+          <article class="panel">
+            <h2>Selected Publications</h2>
+            <!--
+              PUBLICATIONS LIST
+              Add one paragraph or list item per publication.
+              Suggested format:
+              author list, year, journal, title, and an optional link.
+            -->
+            <ul class="detail-list">
+              <li>
+                Bopp, J., Gottlieb, O., et al. (2025), <em>Astrophysical Journal Letters</em>.
+                <a
+                  class="text-link"
+                  href="https://ui.adsabs.harvard.edu/abs/2025ApJ...982L..56B/abstract"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  View on ADS
+                </a>
+              </li>
+            </ul>
+          </article>
+
+          <article class="panel">
+            <h2>Talks / Posters</h2>
+            <!--
+              TALKS AND POSTERS
+              Add one bullet per talk or poster from your CV.
+              Good fields to include:
+              - meeting name
+              - year
+              - title
+              - talk or poster
+            -->
+            <ul class="detail-list">
+              <li>AAS meeting presentation on Rubin / DP0.2 work</li>
+              <li>APS meeting presentation on Rubin / DP0.2 work</li>
+              <li>Add future talks, posters, and conference presentations here</li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="panel">
+          <h2>Code / Tools</h2>
+          <p>
+            My work regularly involves high-performance computing, GRMHD simulations with <em>HAMR</em>,
+            1D collapse studies with <em>GR1D</em>, and analysis and visualization in Python.
+          </p>
+          <p>
+            For a broader view of projects and code, see
+            <a class="text-link" href="https://github.com/JustinBopp" target="_blank" rel="noreferrer">GitHub</a>.
+          </p>
         </section>
       </main>
 
