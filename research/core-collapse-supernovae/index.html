@@ -33,7 +33,8 @@
           <p class="eyebrow">Research Project</p>
           <h1>Disk Outflows</h1>
           <p>
-            3D GRMHD collapsar simulations focused on accretion-disk formation and disk-powered outflows.
+            3D GRMHD collapsar simulations exploring how black hole spin, disk magnetic fields,
+            and accretion physics shape jet launching and disk-driven outflows.
           </p>
           <div class="button-row">
             <a class="button" href="../">Back to Research</a>
@@ -58,49 +59,52 @@
             - publication status
           -->
           <p>
-            Conducted under the supervision of Dr. Ore Gottlieb at the Center for Computational
-            Astrophysics, this project investigates the dynamical evolution of collapsars:
-            core-collapse supernovae that directly form black holes.
+            This project follows collapsar evolution in 3D GRMHD with <em>H-AMR</em>, using a suite of
+            models that vary black hole spin while keeping the stellar envelope and magnetic setup fixed.
           </p>
           <p>
-            Using the 3D GRMHD code <em>HAMR</em>, I simulated massive stellar collapse across
-            a range of natal black hole spins to study how rotation influences disk formation,
-            magnetic flux accumulation, and the launching of outflows.
+            The main result is that large-scale, magnetically driven outflows can emerge even when the
+            black hole spin is zero. In the low-spin runs, the disk itself powers subrelativistic outflows
+            consistent with a Blandford-Payne-like picture, while higher-spin models develop more efficient
+            and persistent jets.
           </p>
           <p>
-            A central result is that even a non-spinning black hole can produce vigorous,
-            subrelativistic, disk-powered outflows driven by the angular momentum of the nascent
-            accretion disk. These outflows can propagate through the stellar envelope and break out
-            of the progenitor, offering insight into the continuum between ordinary CCSNe and GRB-producing collapsars.
+            That makes this project useful for bridging ordinary core-collapse explosions and fully
+            jet-driven collapsars: spin strengthens the engine, but the disk and magnetic field can already
+            produce meaningful outflows before Blandford-Znajek power dominates.
           </p>
         </section>
 
         <section class="panel">
           <h2>Plots and Figures</h2>
           <p>
-            The figures below use your existing project images. Duplicate any <code>figure</code>
-            block if you want to add more snapshots, slices, or annotated plots later.
+            Representative frames from the non-spinning run show the geometry of the disk, magnetic
+            field, and emerging outflow. These views are especially useful for visualizing how a disk-driven
+            outflow can form even without black hole spin.
           </p>
 
           <div class="gallery-grid">
             <figure class="gallery-card">
               <img src="../../images/3d_nospin2.png" alt="3D visualization of a non-spinning collapsar simulation." />
               <figcaption>
-                3D visualization from a non-spinning collapsar simulation highlighting the outflow structure.
+                Three-dimensional snapshot from the non-spinning model, showing a disk-driven outflow
+                emerging from the central accretion flow even without Blandford-Znajek power from black hole spin.
               </figcaption>
             </figure>
 
             <figure class="gallery-card">
               <img src="../../images/xy_bpol_tor_D2456 (2).png" alt="Magnetic field and torus structure in the simulation." />
               <figcaption>
-                Example simulation slice showing magnetic structure and disk geometry during evolution.
+                Equatorial slice of the non-spinning model highlighting the toroidal disk structure and
+                poloidal magnetic-field geometry that helps collimate the outflow.
               </figcaption>
             </figure>
 
             <figure class="gallery-card">
               <img src="../../images/xz_bpol_tor_D2456 (2).png" alt="Cross-sectional view of the collapsar simulation." />
               <figcaption>
-                Cross-sectional view showing the outflow channel and the surrounding stellar material.
+                Meridional slice showing the polar funnel, magnetized outflow channel, and interaction
+                between the emerging ejecta and the surrounding stellar envelope.
               </figcaption>
             </figure>
           </div>
@@ -109,7 +113,8 @@
         <section class="panel">
           <h2>Animation</h2>
           <p>
-            The main animation is shown in a smaller frame here so it does not dominate the whole page.
+            This movie follows the time evolution of the non-spinning collapsar run and the growth of the
+            disk-driven outflow.
           </p>
 
           <!--
@@ -122,6 +127,10 @@
             <source src="../../images/AMR_0spin presentation (1).mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
+          <p class="media-caption">
+            Time evolution of the non-spinning collapsar model, showing disk formation, magnetic-field growth,
+            and the emergence of a disk-driven outflow without black hole spin.
+          </p>
         </section>
 
         <section class="panel">
@@ -156,7 +165,8 @@
             </div>
           </div>
           <p class="media-caption">
-            Comparison movies showing different simulation setups and the resulting outflow evolution.
+            Comparison movies across black hole spin values show that higher spin produces more persistent,
+            efficient jets, while low-spin and non-spinning cases still launch substantial disk-driven outflows.
           </p>
         </section>
 
@@ -166,6 +176,10 @@
             <source src="../../images/single.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
+          <p class="media-caption">
+            Single-run diagnostic movie highlighting the internal evolution of the flow and the structure of
+            the outflowing material in one representative collapsar model.
+          </p>
         </section>
 
         <section class="panel">
