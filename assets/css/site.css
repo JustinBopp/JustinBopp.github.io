@@ -245,6 +245,25 @@ main {
   background: rgba(255, 255, 255, 0.03);
 }
 
+/*
+  SECONDARY PROJECT CARD
+  Use this when you want a project to stay visible but feel less central.
+  Add class="project-card project-card-secondary" in the HTML.
+*/
+.project-card-secondary {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.project-card-secondary .project-thumb {
+  filter: grayscale(18%) contrast(0.94);
+}
+
+.project-card-secondary .project-meta,
+.project-card-secondary p {
+  color: #b8b8b8;
+}
+
 .project-thumb {
   width: 100%;
   aspect-ratio: 16 / 10;

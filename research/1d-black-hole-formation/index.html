@@ -11,10 +11,19 @@
     <!--
       GR1D PAGE EDIT GUIDE
       ====================
-      - Keep the Project Team panel updated as collaborations change.
-      - Use the overview section for methods, model grids, and key physical questions.
-      - Replace the placeholder figures when you have real GR1D plots.
-      - This is a good page for tables if you start comparing many runs.
+      This page is set up around one manuscript summary plus a figure gallery.
+
+      QUICK EDIT NOTES
+      - Update the intro paragraph if the main paper focus changes.
+      - Keep the Project Team panel current as collaborations change.
+      - The "Project Overview" should stay high-level and readable.
+      - The "Manuscript Figures" section is where you add or swap paper plots.
+      - Each figure uses:
+          <img src="...">
+          <figcaption>...</figcaption>
+        so you only need to replace the filename and caption text to swap plots.
+      - If you add another plot, copy one <figure class="gallery-card">...</figure>
+        block and paste it inside the same gallery grid.
     -->
     <div class="site-shell">
       <header class="site-header">
@@ -33,7 +42,9 @@
           <p class="eyebrow">Research Project</p>
           <h1>1D Black Hole Formation</h1>
           <p>
-            GR1D-based stellar collapse studies focused on black hole formation and parameter exploration.
+            GR1D+STIR models of rotating helium-star collapse, tracking how progenitor structure,
+            angular momentum, and turbulence shape shock evolution, black hole formation, and
+            pre-engine collapsar conditions.
           </p>
           <div class="button-row">
             <a class="button" href="../">Back to Research</a>
@@ -52,57 +63,106 @@
           <h2>Project Overview</h2>
           <!--
             PROJECT OVERVIEW
-            Use this section for the main science summary.
+            Use this section for the main science summary from the current paper.
             Good things to add here later:
-            - progenitor models
-            - EOS choices
-            - collapse / bounce / black hole formation times
-            - parameter studies
-            - comparison figures
+            - updated manuscript abstract language
+            - new progenitor suites
+            - EOS / transport changes
+            - what changed relative to the previous paper version
           -->
           <p>
-            This project page is reserved for 1D simulations of stellar collapse and black hole formation.
-            It should work well for organized summaries of GR1D runs, parameter sweeps, and comparisons
-            across progenitors or physical assumptions.
+            This project uses GR1D with energy-dependent neutrino transport and the STIR turbulence model to
+            study how rotating helium-star progenitors evolve through collapse, bounce, post-bounce accretion,
+            and eventual black hole formation in the collapsar regime.
           </p>
           <p>
-            As you add material, this page can hold both short explanations for general visitors and more
-            technical notes on numerical setup, model assumptions, and key diagnostic quantities.
+            In <em>Until I Collapse</em>, the main question is not just whether a model reaches black hole
+            formation, but how the collapse path changes once rotation and turbulence are added to the same
+            neutrino-transport framework. Across the HE16 suite, progenitor structure sets the broad ordering
+            of outcomes, while rotation provides the dominant non-thermal support and turbulence changes how
+            long the most promising models resist collapse.
+          </p>
+          <p>
+            The manuscript also shows that black hole formation alone is not enough to identify a good collapsar
+            candidate. The clearest 1D pre-engine cases are the models that both collapse and still retain
+            exterior material with specific angular momentum above the ISCO threshold. In the present suite,
+            HE16O is the strongest candidate and HE16H remains a more marginal case.
           </p>
         </section>
 
         <section class="panel">
-          <h2>Planned Figures</h2>
+          <h2>Manuscript Figures</h2>
           <p>
-            Duplicate the figure blocks below once you have plots ready. Good candidates include
-            central density evolution, mass accretion rate, shock radius, black hole formation time,
-            and parameter comparisons.
+            These plots come directly from the current <em>Until I Collapse</em> figure set. Together they
+            summarize the broad HE16 outcome sequence, the support budget behind the most promising models,
+            a representative HE16H control comparison, and the final collapsar diagnostics.
           </p>
 
           <div class="gallery-grid">
             <figure class="gallery-card">
-              <img src="../../images/pic01.jpg" alt="Placeholder for a future GR1D figure." />
+              <!--
+                FIGURE SWAP NOTE
+                To replace this plot later:
+                1. Copy the new image into /images/
+                2. Update the src path below
+                3. Rewrite the figcaption in plain language
+              -->
+              <img src="../../images/gr1d_he16_suite_overview.png" alt="Four-panel overview of the primary HE16 suite showing density, shock radius, explosion energy, and overburden." />
               <figcaption>
-                Replace this placeholder with a GR1D result figure when you are ready.
+                Overview of the primary 1/3+turbulence+rotation HE16 suite. The panels track central density,
+                shock radius, explosion energy, and overburden after bounce, showing that progenitor structure
+                sets the broad ordering of outcomes while only a subset of models develops delayed shock
+                expansion or reduced overburden consistent with stronger pre-engine support.
               </figcaption>
             </figure>
 
             <figure class="gallery-card">
-              <img src="../../images/pic02.jpg" alt="Second placeholder for a future GR1D figure." />
+              <img src="../../images/gr1d_he16_support_budget.png" alt="Four-panel support-budget figure showing total, thermal, turbulent, and rotational contributions across the HE16 suite." />
               <figcaption>
-                Duplicate this block for additional plots, comparison panels, or summary figures.
+                Generalized antesonic diagnostics for the same HE16 suite, separated into total, thermal,
+                turbulent, and rotational contributions. Thermal support alone usually remains below the
+                comparison separatrix, rotation provides the dominant non-thermal boost, and turbulence adds
+                a smaller but still important correction in the models closest to secondary shock expansion.
+              </figcaption>
+            </figure>
+
+            <figure class="gallery-card">
+              <img src="../../images/gr1d_he16h_variants.png" alt="Representative HE16H control-set comparison showing shock radius and central density for different spin and turbulence choices." />
+              <figcaption>
+                Representative HE16H control-set comparison isolating spin and turbulence. The coupled
+                spin+turbulence model survives longest and shows the clearest late secondary shock expansion,
+                while removing turbulence or spin shortens the time to collapse and weakens post-bounce support.
+              </figcaption>
+            </figure>
+
+            <figure class="gallery-card">
+              <img src="../../images/gr1d_collapsar_diagnostics.png" alt="Collapsar diagnostics comparing exterior angular momentum against the ISCO threshold and estimated natal black hole spin." />
+              <figcaption>
+                Final collapsar diagnostics for the most relevant models. The left panel compares exterior
+                specific angular momentum with the ISCO threshold at collapse, while the right panel relates
+                natal black hole spin to the same disk-forming criterion. HE16O stands out as the clearest
+                current collapsar-like candidate, with HE16H remaining closer to the threshold.
               </figcaption>
             </figure>
           </div>
         </section>
 
         <section class="panel">
-          <h2>Notes for Future Updates</h2>
-          <!-- FUTURE NOTES: keep this list only if it stays useful; otherwise replace it with real results -->
+          <h2>Current Results Summary</h2>
+          <!--
+            RESULTS LIST EDIT NOTE
+            Keep these bullets short and paper-driven.
+            Good format:
+            - one sentence per result
+            - no equations
+            - one clear takeaway each
+          -->
           <ul class="detail-list">
-            <li>Add run tables if you want a compact summary of models and outcomes.</li>
-            <li>Embed videos here if you end up making animated diagnostics.</li>
-            <li>Use separate subsections for methods, results, and future work if the page grows.</li>
+            <li>Progenitor structure sets the broad ordering of outcomes across the HE16 sequence.</li>
+            <li>Rotation is the dominant non-thermal contribution to the support budget in the models closest to explosion-like behavior.</li>
+            <li>Turbulence changes how long favorable rotating models resist collapse and helps produce the clearest secondary shock expansion.</li>
+            <li>Black hole formation by itself overpredicts collapsar viability; the angular momentum content of the remaining exterior material still matters.</li>
+            <li>Within the present 1D suite, HE16O is the clearest collapsar-like candidate, with HE16H remaining marginal.</li>
           </ul>
         </section>
       </main>
