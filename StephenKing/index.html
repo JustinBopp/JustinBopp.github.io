@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Stephen King Collection | Justin Bopp</title>
+
+    <!--
+      This page is intentionally hidden from the main website navigation.
+      The noindex tag also asks search engines not to list it in search results.
+      Share it directly at: JustinBopp.github.io/StephenKing/
+    -->
+    <meta name="robots" content="noindex, nofollow" />
+    <meta
+      name="description"
+      content="A private, browser-saved Stephen King novel collection tracker."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./tracker.js" defer></script>
+  </head>
+
+  <body>
+    <div class="fog fog-one" aria-hidden="true"></div>
+    <div class="fog fog-two" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <header class="masthead">
+        <!-- This Home link does not add StephenKing to the main site's navigation. -->
+        <a class="home-link" href="../index.html">Return to JustinBopp.github.io</a>
+        <p class="kicker">A Constant Reader's Ledger</p>
+        <h1>Stephen King</h1>
+        <p class="intro">
+          A publication-order checklist of the novels and novel-length works, including
+          the books published as Richard Bachman.
+        </p>
+      </header>
+
+      <main>
+        <!--
+          SAVE BEHAVIOR
+          =============
+          Checks do not save immediately. The visitor must press "Save changes."
+          The data is stored only in that browser using localStorage. It does not alter
+          the public website, and it will not automatically follow the visitor to a
+          different browser or device.
+        -->
+        <section class="save-note" aria-labelledby="how-saving-works">
+          <div>
+            <p class="section-label">Before You Begin</p>
+            <h2 id="how-saving-works">Your ledger stays on this device</h2>
+          </div>
+          <p>
+            Mark your collection below, then choose <strong>Save changes</strong>. Your
+            selections are private and saved only in this browser. Unsaved changes are
+            clearly marked so they are harder to lose by accident.
+          </p>
+        </section>
+
+        <!-- These totals are calculated automatically by tracker.js. -->
+        <section class="stats" aria-label="Collection progress">
+          <article>
+            <span class="stat-number" id="owned-count">0</span>
+            <span class="stat-label">Titles owned</span>
+          </article>
+          <article>
+            <span class="stat-number" id="first-count">0</span>
+            <span class="stat-label">First editions</span>
+          </article>
+          <article>
+            <span class="stat-number" id="read-count">0</span>
+            <span class="stat-label">Books read</span>
+          </article>
+          <article>
+            <span class="stat-number" id="total-count">68</span>
+            <span class="stat-label">Books listed</span>
+          </article>
+        </section>
+
+        <section class="ledger" aria-labelledby="ledger-heading">
+          <div class="ledger-heading-row">
+            <div>
+              <p class="section-label">1974 to 2026</p>
+              <h2 id="ledger-heading">The Collection</h2>
+            </div>
+
+            <!-- Search filters the visible rows but does not change saved data. -->
+            <label class="search-box">
+              <span>Find a title</span>
+              <input id="book-search" type="search" placeholder="Try: Misery" autocomplete="off" />
+            </label>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <caption class="visually-hidden">
+                Stephen King novels in release order with collection checkboxes
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col" class="title-column">Novel</th>
+                  <th scope="col">Hardcover</th>
+                  <th scope="col"><span class="desktop-label">Hardcover </span>1st edition</th>
+                  <th scope="col">Softcover</th>
+                  <th scope="col"><span class="desktop-label">Softcover </span>1st edition</th>
+                  <th scope="col">Read</th>
+                </tr>
+              </thead>
+
+              <!--
+                Book rows are generated from the BOOKS list in tracker.js.
+                To add a new novel, edit only that list; no table HTML is required here.
+              -->
+              <tbody id="book-list"></tbody>
+            </table>
+          </div>
+
+          <div class="save-bar">
+            <p id="save-status" class="save-status" aria-live="polite">No unsaved changes.</p>
+            <div class="save-actions">
+              <button id="undo-button" class="button button-secondary" type="button" disabled>
+                Undo unsaved
+              </button>
+              <button id="save-button" class="button button-primary" type="button" disabled>
+                Save changes
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!--
+          USEFUL LINKS
+          Add another link by copying one <li> block and changing its href and text.
+          target="_blank" opens the resource in a new tab.
+        -->
+        <section class="links-section" aria-labelledby="links-heading">
+          <p class="section-label">Beyond the Ledger</p>
+          <h2 id="links-heading">Useful Links</h2>
+          <ul class="link-grid">
+            <li>
+              <a href="https://stephenking.com/" target="_blank" rel="noreferrer">
+                <span>Official Stephen King Website</span>
+                <small>News, new releases, and official updates</small>
+              </a>
+            </li>
+            <li>
+              <a href="https://stephenking.com/works/novel/" target="_blank" rel="noreferrer">
+                <span>Official Novels &amp; Novellas</span>
+                <small>The source list for published fiction</small>
+              </a>
+            </li>
+            <li>
+              <a href="https://stephenking.com/bibliography/" target="_blank" rel="noreferrer">
+                <span>Official Bibliography</span>
+                <small>Search the complete catalog of works</small>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://stephenking.com/other/identifying_first_editions.pdf"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span>Identifying First Editions</span>
+                <small>The official collector's guide (PDF)</small>
+              </a>
+            </li>
+          </ul>
+          <p class="source-note">
+            List checked against the official Stephen King bibliography. Last updated November 2026.
+          </p>
+        </section>
+      </main>
+
+      <footer>
+        <p>All things serve the Beam.</p>
+      </footer>
+    </div>
+  </body>
+</html>
