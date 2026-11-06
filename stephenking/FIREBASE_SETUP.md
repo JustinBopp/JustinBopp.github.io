@@ -14,7 +14,7 @@ Only the database itself and its URL still need to be supplied.
 6. Copy the database URL shown at the top of the **Data** tab. It usually resembles
    `https://PROJECT-NAME-default-rtdb.firebaseio.com`.
 7. Paste that URL into `cloud-config.js` as the value of `databaseUrl`.
-8. Commit and push the `StephenKing` folder.
+8. Commit and push the `stephenking` folder.
 9. Open the live page once and press **Save changes** to initialize the shared ledger.
 
 ## Important Behavior

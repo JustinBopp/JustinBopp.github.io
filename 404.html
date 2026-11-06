@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Page Not Found | Justin Bopp</title>
+    <meta name="robots" content="noindex" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+
+    <!--
+      CASE-INSENSITIVE STEPHEN KING REDIRECT
+      ======================================
+      GitHub Pages paths are case-sensitive. This sends /StephenKing/,
+      /STEPHENKING/, and other capitalization variants to /stephenking/.
+
+      Other missing URLs continue to the regular 404 content below.
+    -->
+    <script>
+      (function redirectStephenKingPath() {
+        var pathWithoutTrailingSlash = window.location.pathname.replace(/\/+$/, "");
+
+        if (pathWithoutTrailingSlash.toLowerCase() === "/stephenking") {
+          window.location.replace(
+            "/stephenking/" + window.location.search + window.location.hash
+          );
+        }
+      })();
+    </script>
+  </head>
+
+  <body>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="site-brand" href="/">Justin Bopp</a>
+      </header>
+
+      <main class="page-layout">
+        <section class="page-intro">
+          <p class="eyebrow">404</p>
+          <h1>Page Not Found</h1>
+          <p>
+            The page may have moved, or the address may have been entered incorrectly.
+          </p>
+          <a class="button button-primary" href="/">Return Home</a>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>Justin Bopp</p>
+      </footer>
+    </div>
+  </body>
+</html>
