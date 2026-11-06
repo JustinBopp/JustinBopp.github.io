@@ -1,0 +1,49 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "stephenKingCollection": {
+      ".read": true,
+      ".write": "newData.exists() && newData.hasChildren(['version', 'updatedAt'])",
+      "version": {
+        ".validate": "newData.val() === 1"
+      },
+      "updatedAt": {
+        ".validate": "newData.isString() && newData.val().length <= 40"
+      },
+      "entries": {
+        "$book": {
+          "$field": {
+            ".validate": "newData.isBoolean() && ($field === 'hardcover' || $field === 'hardcoverFirst' || $field === 'softcover' || $field === 'softcoverFirst' || $field === 'read')"
+          }
+        }
+      },
+      "$other": {
+        ".validate": false
+      }
+    },
+    "stephenKingHistory": {
+      ".read": true,
+      "$snapshot": {
+        ".write": "!data.exists() && newData.exists()",
+        ".validate": "newData.hasChildren(['version', 'savedAt'])",
+        "version": {
+          ".validate": "newData.val() === 1"
+        },
+        "savedAt": {
+          ".validate": "newData.isString() && newData.val().length <= 40"
+        },
+        "entries": {
+          "$book": {
+            "$field": {
+              ".validate": "newData.isBoolean() && ($field === 'hardcover' || $field === 'hardcoverFirst' || $field === 'softcover' || $field === 'softcoverFirst' || $field === 'read')"
+            }
+          }
+        },
+        "$other": {
+          ".validate": false
+        }
+      }
+    }
+  }
+}

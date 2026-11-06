@@ -4,7 +4,13 @@
   This file does three jobs:
   1. Stores the book list in one easy-to-edit place.
   2. Builds the checkbox table automatically.
-  3. Saves a visitor's checks in that visitor's browser only.
+  3. Loads and saves one shared collection using Firebase Realtime Database.
+
+  CLOUD SETUP
+  -----------
+  The only value that belongs outside this file is the database URL in
+  cloud-config.js. If that URL is blank, this script falls back to browser-local
+  storage so the page still works while Firebase is being set up.
 
   HOW TO ADD A FUTURE NOVEL
   -------------------------
@@ -105,26 +111,153 @@ const FIELDS = [
 
 const STORAGE_KEY = "justinbopp-stephen-king-collection-v1";
 
+/* All shared data lives at this single, intentionally public Firebase path. */
+const CLOUD_PATH = "stephenKingCollection.json";
+const HISTORY_PATH = "stephenKingHistory.json";
+const HISTORY_DISPLAY_LIMIT = 12;
+
 const listElement = document.querySelector("#book-list");
 const searchInput = document.querySelector("#book-search");
 const saveButton = document.querySelector("#save-button");
 const undoButton = document.querySelector("#undo-button");
+const reloadButton = document.querySelector("#reload-button");
 const saveStatus = document.querySelector("#save-status");
+const cloudStatus = document.querySelector("#cloud-status");
+const historyList = document.querySelector("#history-list");
+const historyStatus = document.querySelector("#history-status");
+const historyRefreshButton = document.querySelector("#history-refresh-button");
 const ownedCount = document.querySelector("#owned-count");
 const firstCount = document.querySelector("#first-count");
 const readCount = document.querySelector("#read-count");
 const totalCount = document.querySelector("#total-count");
 
-let savedEntries = loadSavedEntries();
-let draftEntries = cloneEntries(savedEntries);
+let savedEntries = {};
+let draftEntries = {};
 let isDirty = false;
+let storageMode = "loading";
+let cloudEtag = null;
+let cloudUpdatedAt = null;
+let historySnapshots = [];
+
+const databaseUrl = normalizeDatabaseUrl(
+  window.STEPHEN_KING_CLOUD?.databaseUrl || ""
+);
 
 totalCount.textContent = BOOKS.length;
 renderBooks();
 updateInterface();
+initializeTracker();
 
-/* Read saved data. A broken or outdated save safely falls back to an empty ledger. */
-function loadSavedEntries() {
+/*
+  Load the shared ledger when configured. The local fallback preserves the original
+  behavior while setup is incomplete, but clearly labels saves as device-only.
+*/
+async function initializeTracker() {
+  if (!databaseUrl) {
+    storageMode = "local";
+    savedEntries = loadLocalEntries();
+    draftEntries = cloneEntries(savedEntries);
+    cloudStatus.className = "cloud-status is-local";
+    cloudStatus.textContent = "Cloud setup is incomplete. Saves currently stay on this device.";
+    historyStatus.textContent = "Saved-state history becomes available after cloud setup.";
+    historyRefreshButton.disabled = true;
+    renderBooks();
+    updateInterface();
+    return;
+  }
+
+  await loadSharedLedger(false);
+}
+
+function normalizeDatabaseUrl(url) {
+  return url.trim().replace(/\/+$/, "");
+}
+
+function getCloudEndpoint() {
+  return `${databaseUrl}/${CLOUD_PATH}`;
+}
+
+function getHistoryEndpoint() {
+  return `${databaseUrl}/${HISTORY_PATH}`;
+}
+
+async function loadSharedLedger(isManualReload) {
+  storageMode = "loading";
+  saveButton.disabled = true;
+  undoButton.disabled = true;
+  reloadButton.disabled = true;
+  cloudStatus.className = "cloud-status";
+  cloudStatus.textContent = "Loading the shared ledger...";
+
+  try {
+    const response = await fetch(getCloudEndpoint(), {
+      headers: { "X-Firebase-ETag": "true" },
+      cache: "no-store",
+    });
+
+    if (!response.ok) throw new Error(`Shared ledger returned ${response.status}.`);
+
+    const payload = await response.json();
+    cloudEtag = response.headers.get("ETag");
+    cloudUpdatedAt = payload?.updatedAt || null;
+    savedEntries = sanitizeEntries(payload?.entries || {});
+    draftEntries = cloneEntries(savedEntries);
+    storageMode = "cloud";
+
+    /* A new database has no document yet, so its first explicit Save initializes it. */
+    isDirty = payload === null;
+    cloudStatus.className = "cloud-status";
+    cloudStatus.textContent = payload
+      ? `Shared ledger connected${formatUpdatedAt(payload.updatedAt)}.`
+      : "Shared ledger connected and ready to be initialized.";
+
+    renderBooks();
+    updateInterface();
+    filterBooks();
+
+    if (isManualReload) {
+      saveStatus.className = "save-status is-saved";
+      saveStatus.textContent = "Latest shared collection loaded.";
+    }
+
+    await loadHistory();
+  } catch (error) {
+    storageMode = "error";
+    cloudStatus.className = "cloud-status is-error";
+    cloudStatus.textContent = "The shared ledger could not be reached. Saving is disabled.";
+    showStorageError("Check the Firebase URL and rules, then reload the shared ledger.");
+    updateInterface();
+  } finally {
+    reloadButton.disabled = false;
+  }
+}
+
+function formatUpdatedAt(value) {
+  if (!value) return "";
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? "" : `; last saved ${date.toLocaleString()}`;
+}
+
+/* Ignore unexpected cloud keys and accept only the five boolean checkbox fields. */
+function sanitizeEntries(entries) {
+  const cleanEntries = {};
+
+  BOOKS.forEach((book) => {
+    const sourceEntry = entries[book.id];
+    if (!sourceEntry || typeof sourceEntry !== "object") return;
+
+    FIELDS.forEach((field) => {
+      if (typeof sourceEntry[field.key] !== "boolean") return;
+      if (!cleanEntries[book.id]) cleanEntries[book.id] = {};
+      cleanEntries[book.id][field.key] = sourceEntry[field.key];
+    });
+  });
+
+  return cleanEntries;
+}
+
+/* Read the legacy local save used only until the shared database is configured. */
+function loadLocalEntries() {
   try {
     const storedValue = window.localStorage.getItem(STORAGE_KEY);
     if (!storedValue) return {};
@@ -224,8 +357,11 @@ function handleCheckboxChange(event) {
 
 function updateInterface() {
   updateStats();
-  saveButton.disabled = !isDirty;
-  undoButton.disabled = !isDirty;
+  const savingIsAvailable = storageMode === "cloud" || storageMode === "local";
+  saveButton.disabled = !isDirty || !savingIsAvailable;
+  undoButton.disabled = !isDirty || !savingIsAvailable;
+
+  if (storageMode === "loading" || storageMode === "error" || storageMode === "conflict") return;
 
   saveStatus.className = `save-status${isDirty ? " is-dirty" : ""}`;
   saveStatus.textContent = isDirty
@@ -250,7 +386,238 @@ function updateStats() {
   readCount.textContent = read;
 }
 
-saveButton.addEventListener("click", () => {
+function getEntryStats(entries) {
+  let owned = 0;
+  let firstEditions = 0;
+  let read = 0;
+
+  BOOKS.forEach((book) => {
+    const entry = entries[book.id] || {};
+    if (entry.hardcover || entry.softcover) owned += 1;
+    if (entry.hardcoverFirst || entry.softcoverFirst) firstEditions += 1;
+    if (entry.read) read += 1;
+  });
+
+  return { owned, firstEditions, read };
+}
+
+/* Fetch recovery points and show the newest twelve without deleting older states. */
+async function loadHistory() {
+  if (!databaseUrl) return;
+
+  historyRefreshButton.disabled = true;
+  historyStatus.className = "history-status";
+  historyStatus.textContent = "Loading saved states...";
+
+  try {
+    const response = await fetch(getHistoryEndpoint(), { cache: "no-store" });
+    if (!response.ok) throw new Error(`History returned ${response.status}.`);
+
+    const payload = (await response.json()) || {};
+    historySnapshots = Object.entries(payload)
+      .map(([key, snapshot]) => ({
+        key,
+        savedAt: snapshot?.savedAt || "",
+        entries: sanitizeEntries(snapshot?.entries || {}),
+      }))
+      .filter((snapshot) => snapshot.savedAt)
+      .sort((a, b) => new Date(b.savedAt) - new Date(a.savedAt));
+
+    renderHistory();
+  } catch (error) {
+    historyStatus.className = "history-status is-error";
+    historyStatus.textContent = "Saved states could not be loaded. Check the Firebase history rules.";
+  } finally {
+    historyRefreshButton.disabled = false;
+  }
+}
+
+function renderHistory() {
+  historyList.replaceChildren();
+
+  if (historySnapshots.length === 0) {
+    historyStatus.textContent = "No recovery points yet. The first global save will create one.";
+    return;
+  }
+
+  const visibleSnapshots = historySnapshots.slice(0, HISTORY_DISPLAY_LIMIT);
+  const fragment = document.createDocumentFragment();
+
+  visibleSnapshots.forEach((snapshot) => {
+    const item = document.createElement("li");
+    item.className = "history-item";
+
+    const identity = document.createElement("div");
+    const date = document.createElement("time");
+    const parsedDate = new Date(snapshot.savedAt);
+    date.className = "history-date";
+    date.dateTime = snapshot.savedAt;
+    date.textContent = Number.isNaN(parsedDate.getTime())
+      ? snapshot.savedAt
+      : parsedDate.toLocaleString();
+
+    const key = document.createElement("span");
+    key.className = "history-key";
+    key.textContent = `State ${snapshot.key.slice(-8)}`;
+    identity.append(date, key);
+
+    const stats = getEntryStats(snapshot.entries);
+    const summary = document.createElement("p");
+    summary.className = "history-summary";
+    summary.textContent = `${stats.owned} owned / ${stats.firstEditions} first editions / ${stats.read} read`;
+
+    const restoreButton = document.createElement("button");
+    restoreButton.className = "button button-secondary";
+    restoreButton.type = "button";
+    restoreButton.textContent = "Restore this state";
+    restoreButton.addEventListener("click", () => restoreSnapshot(snapshot));
+
+    item.append(identity, summary, restoreButton);
+    fragment.appendChild(item);
+  });
+
+  historyList.appendChild(fragment);
+  historyStatus.className = "history-status";
+  historyStatus.textContent = historySnapshots.length > HISTORY_DISPLAY_LIMIT
+    ? `Showing the ${HISTORY_DISPLAY_LIMIT} newest of ${historySnapshots.length} saved states.`
+    : `${historySnapshots.length} saved state${historySnapshots.length === 1 ? "" : "s"} available.`;
+}
+
+function restoreSnapshot(snapshot) {
+  draftEntries = cloneEntries(snapshot.entries);
+  isDirty = JSON.stringify(draftEntries) !== JSON.stringify(savedEntries);
+  renderBooks();
+  updateInterface();
+  filterBooks();
+
+  saveStatus.className = isDirty ? "save-status is-dirty" : "save-status is-saved";
+  saveStatus.textContent = isDirty
+    ? "Older state loaded. Press Save changes to restore it globally."
+    : "That saved state already matches the current shared collection.";
+
+  document.querySelector("#ledger-heading").scrollIntoView({ behavior: "smooth" });
+}
+
+function entriesFingerprint(entries) {
+  return JSON.stringify(entries);
+}
+
+/* Append-only snapshots cannot be changed or deleted under the supplied rules. */
+async function createHistorySnapshot(entries, savedAt) {
+  const fingerprint = entriesFingerprint(entries);
+  const alreadySaved = historySnapshots.some(
+    (snapshot) => entriesFingerprint(snapshot.entries) === fingerprint
+  );
+  if (alreadySaved) return true;
+
+  const snapshotPayload = {
+    version: 1,
+    savedAt: savedAt || new Date().toISOString(),
+    entries,
+  };
+
+  const response = await fetch(getHistoryEndpoint(), {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(snapshotPayload),
+  });
+  if (!response.ok) return false;
+
+  const result = await response.json();
+  historySnapshots.unshift({
+    key: result.name,
+    savedAt: snapshotPayload.savedAt,
+    entries: cloneEntries(entries),
+  });
+  return true;
+}
+
+saveButton.addEventListener("click", async () => {
+  if (storageMode === "cloud") {
+    await saveSharedLedger();
+    return;
+  }
+
+  saveLocalLedger();
+});
+
+async function saveSharedLedger() {
+  saveButton.disabled = true;
+  undoButton.disabled = true;
+  reloadButton.disabled = true;
+  saveStatus.className = "save-status";
+  saveStatus.textContent = "Saving the shared collection...";
+
+  try {
+    /* Preserve the currently shared state before replacing it. */
+    const previousStateBackedUp = await createHistorySnapshot(
+      savedEntries,
+      cloudUpdatedAt || new Date().toISOString()
+    );
+
+    const savePayload = {
+      version: 1,
+      updatedAt: new Date().toISOString(),
+      entries: draftEntries,
+    };
+
+    const response = await fetch(getCloudEndpoint(), {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "If-Match": cloudEtag || "null_etag",
+      },
+      body: JSON.stringify(savePayload),
+    });
+
+    if (response.status === 412) {
+      storageMode = "conflict";
+      saveStatus.className = "save-status is-error";
+      saveStatus.textContent = "Someone else saved first. Reload the shared ledger before editing again.";
+      cloudStatus.className = "cloud-status is-error";
+      cloudStatus.textContent = "A newer shared version is available; your changes were not overwritten.";
+      return;
+    }
+
+    if (!response.ok) throw new Error(`Shared save returned ${response.status}.`);
+
+    savedEntries = cloneEntries(draftEntries);
+    isDirty = false;
+    cloudUpdatedAt = savePayload.updatedAt;
+    await refreshCloudEtag();
+    storageMode = "cloud";
+    const newStateBackedUp = await createHistorySnapshot(
+      savedEntries,
+      savePayload.updatedAt
+    );
+    renderHistory();
+    updateInterface();
+    saveStatus.className = "save-status is-saved";
+    saveStatus.textContent = previousStateBackedUp && newStateBackedUp
+      ? `Saved globally with a recovery point on ${new Date().toLocaleString()}.`
+      : `Saved globally on ${new Date().toLocaleString()}, but history could not record this state.`;
+    cloudStatus.className = "cloud-status";
+    cloudStatus.textContent = "Shared ledger connected; this saved collection is now visible to everyone.";
+  } catch (error) {
+    storageMode = "error";
+    showStorageError("The global save failed. Your unsaved checks are still visible on this page.");
+  } finally {
+    reloadButton.disabled = false;
+    saveButton.disabled = !isDirty || storageMode !== "cloud";
+    undoButton.disabled = !isDirty || storageMode !== "cloud";
+  }
+}
+
+/* Fetch only the current ETag after saving so the next edit has collision protection. */
+async function refreshCloudEtag() {
+  const response = await fetch(getCloudEndpoint(), {
+    headers: { "X-Firebase-ETag": "true" },
+    cache: "no-store",
+  });
+  if (response.ok) cloudEtag = response.headers.get("ETag");
+}
+
+function saveLocalLedger() {
   try {
     const savePayload = {
       version: 1,
@@ -263,11 +630,11 @@ saveButton.addEventListener("click", () => {
     isDirty = false;
     updateInterface();
     saveStatus.className = "save-status is-saved";
-    saveStatus.textContent = `Saved on ${new Date().toLocaleString()}.`;
+    saveStatus.textContent = `Saved on this device at ${new Date().toLocaleString()}.`;
   } catch (error) {
     showStorageError("This browser blocked the save. Check its privacy or storage settings.");
   }
-});
+}
 
 /* Undo restores the most recent saved state without deleting that saved state. */
 undoButton.addEventListener("click", () => {
@@ -277,6 +644,23 @@ undoButton.addEventListener("click", () => {
   updateInterface();
   filterBooks();
 });
+
+/* Reload intentionally discards unsaved browser changes and fetches the global version. */
+reloadButton.addEventListener("click", async () => {
+  if (storageMode === "local") {
+    savedEntries = loadLocalEntries();
+    draftEntries = cloneEntries(savedEntries);
+    isDirty = false;
+    renderBooks();
+    updateInterface();
+    filterBooks();
+    return;
+  }
+
+  await loadSharedLedger(true);
+});
+
+historyRefreshButton.addEventListener("click", loadHistory);
 
 searchInput.addEventListener("input", filterBooks);
 

@@ -16,6 +16,13 @@
       content="A private, browser-saved Stephen King novel collection tracker."
     />
     <link rel="stylesheet" href="./styles.css" />
+
+    <!--
+      cloud-config.js contains the Firebase Realtime Database URL.
+      It must load before tracker.js so the tracker knows whether to use the
+      shared cloud ledger or its browser-local fallback.
+    -->
+    <script src="./cloud-config.js" defer></script>
     <script src="./tracker.js" defer></script>
   </head>
 
@@ -40,20 +47,24 @@
           SAVE BEHAVIOR
           =============
           Checks do not save immediately. The visitor must press "Save changes."
-          The data is stored only in that browser using localStorage. It does not alter
-          the public website, and it will not automatically follow the visitor to a
-          different browser or device.
+          Once cloud-config.js contains a Firebase database URL, every visitor loads
+          and edits the same shared ledger. See FIREBASE_SETUP.md for setup steps.
         -->
         <section class="save-note" aria-labelledby="how-saving-works">
           <div>
             <p class="section-label">Before You Begin</p>
-            <h2 id="how-saving-works">Your ledger stays on this device</h2>
+            <h2 id="how-saving-works">One collection, shared by every visitor</h2>
           </div>
-          <p>
-            Mark your collection below, then choose <strong>Save changes</strong>. Your
-            selections are private and saved only in this browser. Unsaved changes are
-            clearly marked so they are harder to lose by accident.
-          </p>
+          <div>
+            <p>
+              Mark the collection below, then choose <strong>Save changes</strong>. Everyone
+              who opens this page sees the same saved checklist. Unsaved changes remain
+              visible only to you until you save them.
+            </p>
+            <p id="cloud-status" class="cloud-status" aria-live="polite">
+              Connecting to the shared ledger...
+            </p>
+          </div>
         </section>
 
         <!-- These totals are calculated automatically by tracker.js. -->
@@ -117,6 +128,9 @@
           <div class="save-bar">
             <p id="save-status" class="save-status" aria-live="polite">No unsaved changes.</p>
             <div class="save-actions">
+              <button id="reload-button" class="button button-secondary" type="button">
+                Reload shared
+              </button>
               <button id="undo-button" class="button button-secondary" type="button" disabled>
                 Undo unsaved
               </button>
@@ -125,6 +139,34 @@
               </button>
             </div>
           </div>
+        </section>
+
+        <!--
+          SAVED STATES
+          ============
+          tracker.js fills this list from the append-only Firebase history path.
+          Choosing Restore only loads that state as an unsaved draft. The visitor
+          must still press Save changes before it becomes the global collection.
+        -->
+        <section class="history-section" aria-labelledby="history-heading">
+          <div class="history-heading-row">
+            <div>
+              <p class="section-label">Recovery Points</p>
+              <h2 id="history-heading">Saved States</h2>
+            </div>
+            <button id="history-refresh-button" class="button button-secondary" type="button">
+              Refresh history
+            </button>
+          </div>
+          <p class="history-intro">
+            Each global save creates a permanent recovery point. Restore loads an older
+            state into the checklist for review; it does not replace the shared collection
+            until you press <strong>Save changes</strong>.
+          </p>
+          <p id="history-status" class="history-status" aria-live="polite">
+            Loading saved states...
+          </p>
+          <ol id="history-list" class="history-list"></ol>
         </section>
 
         <!--

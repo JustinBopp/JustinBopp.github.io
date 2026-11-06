@@ -183,6 +183,27 @@ main {
   color: var(--muted);
 }
 
+.save-note > div > p:not(.section-label) {
+  color: var(--muted);
+}
+
+.cloud-status {
+  margin: 12px 0 0;
+  padding-top: 11px;
+  border-top: 1px solid var(--line);
+  color: #b9cbb5 !important;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.72rem;
+}
+
+.cloud-status.is-local {
+  color: #e2bd83 !important;
+}
+
+.cloud-status.is-error {
+  color: #ff8f86 !important;
+}
+
 .stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -455,6 +476,80 @@ tbody tr[hidden] {
   cursor: not-allowed;
 }
 
+/* Saved-state history sits outside the ledger so it remains easy to find and scan. */
+.history-section {
+  margin-top: 42px;
+  padding: 32px;
+  border: 1px solid var(--line);
+  background: rgba(17, 16, 15, 0.88);
+  box-shadow: 0 25px 80px var(--shadow);
+}
+
+.history-heading-row {
+  display: flex;
+  gap: 24px;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.history-heading-row h2 {
+  margin-bottom: 0;
+}
+
+.history-intro {
+  max-width: 760px;
+  margin: 20px 0 18px;
+  color: var(--muted);
+}
+
+.history-status {
+  margin: 0;
+  color: var(--muted);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.72rem;
+}
+
+.history-status.is-error {
+  color: #ff8f86;
+}
+
+.history-list {
+  display: grid;
+  gap: 1px;
+  margin: 22px 0 0;
+  padding: 1px;
+  list-style: none;
+  background: var(--line);
+}
+
+.history-item {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.8fr) minmax(260px, 1.2fr) auto;
+  gap: 24px;
+  align-items: center;
+  padding: 18px 20px;
+  background: var(--coal);
+}
+
+.history-date {
+  display: block;
+  font-size: 1rem;
+}
+
+.history-key {
+  display: block;
+  color: var(--muted);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.62rem;
+}
+
+.history-summary {
+  margin: 0;
+  color: var(--muted);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.7rem;
+}
+
 .links-section {
   padding: 80px 0 10px;
 }
@@ -674,6 +769,24 @@ footer p {
 
   .save-actions,
   .button {
+    width: 100%;
+  }
+
+  .history-section {
+    padding: 24px;
+  }
+
+  .history-heading-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .history-item {
+    grid-template-columns: 1fr;
+  }
+
+  .history-heading-row .button,
+  .history-item .button {
     width: 100%;
   }
 
